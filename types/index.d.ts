@@ -1,5 +1,7 @@
-/* eslint-disable no-unused-vars */
+import { authFormSchema } from "@/lib/utils";
+import { FieldPath } from "react-hook-form";
 
+/* eslint-disable no-unused-vars */
 declare type SearchParamProps = {
   params: { [key: string]: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -327,4 +329,12 @@ declare interface getBankProps {
 
 declare interface getBankByAccountIdProps {
   accountId: string;
+}
+
+const formSchema = authFormSchema("sign-up")
+declare interface customFormIputProps{
+  control: control<z.infer<typeof formSchema>>,
+  name: FieldPath<z.infer<typeof formSchema>>,
+  label: string,
+  placeholder:string,
 }

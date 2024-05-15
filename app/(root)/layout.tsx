@@ -1,5 +1,6 @@
 import MobileNavbar from "@/components/MobileNavbar";
 import Sidebar from "@/components/Sidebar";
+import { User } from "@/types";
 import Image from "next/image";
 
 export default function RootLayout({
@@ -9,10 +10,27 @@ export default function RootLayout({
 }>) {
 
 
-  const loggedIn = {firstName: "Francis", lastName: 'Deulo'}
+  const user: User = {
+  firstName: 'Carol ',
+  lastName: 'Henry',
+  email: 'deulo@gmail.com',
+  userId: "",
+  $id: '',
+  dwollaCustomerUrl: '',
+  dwollaCustomerId: '',
+  name: '',
+  address1: '',
+  city: '',
+  state: '',
+  postalCode:'',
+  dateOfBirth:'',
+  ssn:''
+};
+
+
   return (
     <main className="flex h-screen w-full font-inter">
-     <Sidebar user={loggedIn}/>
+     <Sidebar user={user}/>
 
      <div className="flex size-full flex-col">
       <div className="root-layout">
@@ -24,7 +42,7 @@ export default function RootLayout({
         />
 
         <div>
-          <MobileNavbar user={loggedIn}/>
+          <MobileNavbar user={user}/>
         </div>
       </div>
          {children}

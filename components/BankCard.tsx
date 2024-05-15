@@ -1,4 +1,5 @@
 import { formatAmount } from "@/lib/utils"
+import { CreditCardProps } from "@/types"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -26,7 +27,7 @@ const BankCard = ({account, userName, showBalance}:CreditCardProps) => {
             </div>
             <p className="text-14 font-semibold text-white">
               ●●●● ●●●● ●●●●
-              <span className="text-16">1234</span>
+              <span className="text-16">{account.mask}</span>
             </p>
           </article>
         </div>
@@ -39,7 +40,7 @@ const BankCard = ({account, userName, showBalance}:CreditCardProps) => {
           alt="pay"
           />
           <Image
-          src='/icons/mastercard.svg'
+          src={`${account.type === 'mastercard'? '/icons/mastercard.svg':account.type === 'visa card'? '/icons/visa.svg': ''  }`}
           width={45}
           height={32}
           alt="mastercard"

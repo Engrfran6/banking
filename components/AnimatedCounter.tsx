@@ -9,8 +9,12 @@ const AnimatedCounter = ({amount}:{amount:number}) => {
     decimalPlaces:2
   })
 
-
-
-  return value
+  return (
+    <span> 
+      <span className='currency-type'>$</span>
+      {value}
+    </span>
+  )
 }
+
 export default AnimatedCounter
