@@ -19,7 +19,7 @@ const PlaidLink = ({user, variant}: PlaidLinkProps) => {
     return () => {
       getLinkToken();
     };
-  }, []);
+  }, [user]);
 
   const onSuccess = useCallback<PlaidLinkOnSuccess>(
     async (public_token: string) => {

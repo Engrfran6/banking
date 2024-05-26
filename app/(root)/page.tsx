@@ -2,13 +2,14 @@ import HeaderBox from '@/components/HeaderBox';
 import RecentTransactions from '@/components/RecentTransactions';
 import RightSidebar from '@/components/RightSidebar';
 import TotalBalanceBox from '@/components/TotalBalanceBox';
+import {register} from '@/instrumentation';
 import {getAccount, getAccounts} from '@/lib/actions/bank.actions';
-import {getTransactionsByBankId} from '@/lib/actions/transaction.actions';
-import {getBank, getLoggedInUser} from '@/lib/actions/user.actions';
-import {plaidClient} from '@/lib/plaid';
+import {getLoggedInUser} from '@/lib/actions/user.actions';
 import {SearchParamProps} from '@/types';
 
 const Home = async ({searchParams: {id, page}}: SearchParamProps) => {
+  register();
+
   const currentPage = Number(page as string) || 1;
   const loggedIn = await getLoggedInUser();
   const accounts = await getAccounts({
