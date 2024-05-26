@@ -1,52 +1,29 @@
-import MobileNavbar from "@/components/MobileNavbar";
-import Sidebar from "@/components/Sidebar";
-import { User } from "@/types";
-import Image from "next/image";
+import MobileNavbar from '@/components/MobileNavbar';
+import Sidebar from '@/components/Sidebar';
+import {getLoggedInUser} from '@/lib/actions/user.actions';
+import Image from 'next/image';
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-
-  const user: User = {
-  firstName: 'Carol ',
-  lastName: 'Henry',
-  email: 'deulo@gmail.com',
-  userId: "",
-  $id: '',
-  dwollaCustomerUrl: '',
-  dwollaCustomerId: '',
-  name: '',
-  address1: '',
-  city: '',
-  state: '',
-  postalCode:'',
-  dateOfBirth:'',
-  ssn:''
-};
-
+  const loggedIn = await getLoggedInUser();
 
   return (
     <main className="flex h-screen w-full font-inter">
-     <Sidebar user={user}/>
+      <Sidebar user={loggedIn} />
 
-     <div className="flex size-full flex-col">
-      <div className="root-layout">
-        <Image 
-         src='/icons/logo.svg' 
-         width={30} 
-         height={30}
-         alt="menu icon" 
-        />
+      <div className="flex size-full flex-col">
+        <div className="root-layout">
+          <Image src="/icons/logo.svg" width={30} height={30} alt="menu icon" />
 
-        <div>
-          <MobileNavbar user={user}/>
+          <div>
+            <MobileNavbar user={loggedIn} />
+          </div>
         </div>
+        {children}
       </div>
-         {children}
-     </div>
     </main>
   );
 }

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 export default function AuthLayout({
   children,
@@ -10,12 +10,7 @@ export default function AuthLayout({
       {children}
       <div className="auth-asset">
         <div>
-          <Image
-          src='/icons/auth-image.svg'
-          alt="auth image"
-          width={500}
-          height={500}
-          />
+          <Image src="/icons/auth-image.png" alt="auth image" width={700} height={700} />
         </div>
       </div>
     </main>
