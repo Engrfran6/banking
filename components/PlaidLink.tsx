@@ -13,12 +13,9 @@ const PlaidLink = ({user, variant}: PlaidLinkProps) => {
   useEffect(() => {
     const getLinkToken = async () => {
       const data = await createLinkToken(user);
-
       setToken(data?.linkToken);
     };
-    return () => {
-      getLinkToken();
-    };
+    getLinkToken();
   }, [user]);
 
   const onSuccess = useCallback<PlaidLinkOnSuccess>(
@@ -27,10 +24,9 @@ const PlaidLink = ({user, variant}: PlaidLinkProps) => {
         publicToken: public_token,
         user,
       });
-
       router.push('/');
     },
-    [user]
+    [user, router]
   );
 
   const config: PlaidLinkOptions = {
